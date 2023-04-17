@@ -1,0 +1,68 @@
+<!-- start header -->
+<header>
+    <!-- start navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent header-light fixed-top navbar-boxed header-reverse-scroll">
+        <div class="container-fluid h-100px md-h-70px">
+            <div class="col-6 col-lg-2 me-auto me-auto ps-lg-0">
+                <a class="navbar-brand" href="index.html">
+                    <img src="../../../../assets/images/img/logo-black.png" class="default-logo" alt="">
+                    <img src="../../../../assets/images/img/logo-white.png" class="alt-logo" alt="">
+                    <img src="../../../../assets/images/img/logo-black.png" class="mobile-logo" alt="">
+                </a>
+            </div>
+            <ul class="d-flex text-end nav-item alt-font" *ngIf="!isLogin">
+                <!-- start menu item -->
+                <li class="nav-link"><a routerLink="/sign-in">signIn</a>
+                </li>
+                <!-- end menu item -->
+                <!-- start menu item -->
+                <li class="nav-link"><a routerLink="/sign-up" class="btn btn-medium rounded btn-gradient-purple-magenta ">Register</a></li>
+                <!-- end menu item -->
+            </ul>
+            <div class="col-auto text-end" *ngIf="isLogin">
+                <div class="header-push-button">
+                    <a href="javascript:void(0);" class="push-button ">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- end navigation -->
+    <!-- start hamburger menu popup -->
+    <div class="hamburger-menu hamburger-menu-big-font bg-black w-25 xl-w-60 lg-w-70 md-w-50 sm-w-100">
+        <a href="javascript:void(0);" class="close-menu text-white"><i class="ti-close"></i></a>
+        <div class="row g-0 h-100">
+            <div class="col-lg-12">
+                <div class="row g-0 align-items-center justify-content-center h-100 padding-7-rem-all xs-padding-3-rem-all">
+                    <div class="col-12 menu-list-wrapper menu-list-wrapper-small text-center text-md-start" data-scroll-options='{ "theme": "light" }'>
+                        <!-- start menu -->
+                        <ul class="menu-list alt-font w-100">
+                            <!-- start menu item -->
+                            <li (click)="hideNavbar()" class="menu-list-item"><a routerLink="/">home</a>
+                            </li>
+                            <!-- end menu item -->
+                            <!-- start menu item -->
+                            <li (click)="hideNavbar()" class="menu-list-item"><a routerLink="/about">about</a></li>
+                            <!-- end menu item -->
+                            <!-- start menu item -->
+                            <li (click)="hideNavbar()" class="menu-list-item"><a routerLink="/quizzes">Categories</a></li>
+                            <!-- end menu item -->
+                        </ul>
+                        <!-- end menu -->
+                    </div>
+                    <div class="col-12 d-none d-md-block">
+                        <div class="alt-font margin-50px-top">
+                            <h6><a class="text-yellow text-decoration-line-bottom text-white-hover" (click)="logOut()">LogOut</a></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end hamburger menu popup -->
+</header>
+<!-- end header -->

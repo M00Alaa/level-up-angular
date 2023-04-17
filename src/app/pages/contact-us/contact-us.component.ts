@@ -1,10 +1,13 @@
 import { AfterViewInit, Component, Renderer2 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { timer } from 'rxjs';
-import { waLink } from 'src/app/app-const';
 import { ContactService } from 'src/app/core/services/contact.service';
 import Swal from 'sweetalert2';
+import { CategoriesService } from '../categories.service';
+
+import { FormGroup, FormControl,FormArray, FormBuilder } from '@angular/forms'
+
 
 @Component({
   selector: 'app-contact-us',
@@ -12,63 +15,131 @@ import Swal from 'sweetalert2';
   styleUrls: ['./contact-us.component.less']
 })
 export class ContactUsComponent implements AfterViewInit{
-  waLink = waLink;
-  activeToSending = true;
-  contactForm = new FormGroup({
-    name: new FormControl('',Validators.required),
-    email: new FormControl('',[Validators.required, Validators.email]),
-    mobile: new FormControl('',Validators.required),
-    message: new FormControl('',Validators.required),
-  })
-  constructor(private render: Renderer2, 
+
+  currentName: string = '';
+  levelName: string = '';
+
+  result :any;
+
+  questions: any[] = [];
+
+  finalAnswers: any[] = [];
+
+  answersForm: FormGroup;
+ 
+  constructor(private fb:FormBuilder,
+    private _CategoriesService: CategoriesService,
+    private _Router: Router,
+    private _ActivatedRoute: ActivatedRoute,
+    private render: Renderer2, 
     private contact: ContactService,
     private translate: TranslateService,
-    ) { }
+  ) {
+    _ActivatedRoute.params.subscribe((res) => {
+      this.currentName = res['name'];
+      console.log(this.currentName);
+      this.levelName = res['quName'];
+      console.log(this.levelName);
+    });
 
+    this.answersForm = this.fb.group({
+      answers: this.fb.array([]) ,
+    });
+  }
+
+  get answers() : FormArray {
+    return this.answersForm.get("answers") as FormArray
+  }
+
+  newAnswer(question: string, id: any, values: string[]) {
+    (this.answersForm.controls['answers'] as FormArray).push(this.fb.group({
+      id : new FormControl(id),
+      question: new FormControl(question) ,
+      answer: new FormControl(null),
+      values: new FormControl(values)
+    }))
+
+    console.log(this.answersForm.controls['answers']);
+    
+ }
+
+  getQuestions() {
+    if (this.levelName == 'test') {
+      this._CategoriesService
+      .getTestQuestions(this.currentName)
+      .subscribe((res) => {
+        
+        this.questions = res;
+        this.questions.forEach(element => {
+          this.newAnswer(element.E_Q, element.E_ID, element.Exam_choice)
+        });
+        
+        console.log(res);
+      });
+    }
+    else{
+      this._CategoriesService
+      .getQuestions(this.currentName, this.levelName)
+      .subscribe((res) => {
+        if (res.message == 'faild') {
+          console.log('Your level is ' + res.date);
+        }
+        else{
+          this.questions = res;
+          this.questions.forEach(element => {
+            this.newAnswer(element.Quction.L_Q, element.Q_ID, element.Quction.Q_choice)
+          });
+        }
+
+        // console.log(res);
+        
+        
+      });
+    }
+    
+  }
+
+  onSubmit() {
+    for (let i = 0; i < this.answers.length; i++) {
+      this.finalAnswers.push(this.answers.value[i].answer)
+    }
+    console.log(this.finalAnswers);
+
+    if (this.levelName == 'test') {
+      this._CategoriesService.getTestResult(this.currentName, this.finalAnswers).subscribe((res)=>{
+  
+        console.log(res);
+        
+        this.result = res;
+        console.log(this.result);
+        
+  
+        // this._Router.navigate([`levels/${this.currentName}/result/${this.levelName}`, this.result])
+      })
+    }
+    else{
+      this._CategoriesService.getResults(this.currentName, this.levelName, this.finalAnswers).subscribe((res)=>{
+  
+        this.result = res;
+        console.log(this.result);
+        
+  
+        this._Router.navigate([`levels/${this.currentName}/result/${this.levelName}`, this.result])
+      })
+    }
+  }
+  
+
+  ngOnInit(): void {
+    this.getQuestions();
+  }
+
+// ------------------------------
   
   ngAfterViewInit(): void {
     this.mainJSActivator();
     
   }
-  formSubmitted = false;
-
-  sending = false;
-  sendMsg(){
-    this.formSubmitted = true;
-    if(this.contactForm.valid){
-      this.sending = true;
-      const timerd = timer(1000 * 60 * 30);
-      this.contact.sendMsg({
-        name:this.contactForm.value.name,
-        email: this.contactForm.value.email,
-        phone:this.contactForm.value.mobile,
-        message:this.contactForm.value.message,
-      }).subscribe(data => {
-        Swal.fire(this.translate.currentLang === 'en'? 'We received your message':'تم استلام رسالتك' ,this.translate.currentLang === 'en'? 'We\'ll contact you as soon as possible': 'سيتم الرد في أقرب وقت .. نشكرك لتواصلك', 'success');
-        Swal.update({
-          confirmButtonColor: '#16db65',
-          confirmButtonText: this.translate.currentLang === 'en'? 'Ok': 'إغلاق'
-        });
-        this.activeToSending = false;
-        this.sending = false;
-        this.formSubmitted = false;
-        this.contactForm.reset();
-        timerd.subscribe(() => {
-          this.activeToSending = true;
-        })
-      }, () => {
-        this.sending = false;
-        Swal.fire(this.translate.currentLang === 'en'? 'An error has been occurred':'حدثت مشكلة أعد المحاولة من فضلك', '', 'error')
-        Swal.update({
-          confirmButtonColor: '#16db65',
-          confirmButtonText: this.translate.currentLang === 'en'? 'Ok': 'إغلاق',
-        });
-      });
-
-
-    }
-  }
-
 
   mainJSActivator(){
     let revScript = document.createElement('script');

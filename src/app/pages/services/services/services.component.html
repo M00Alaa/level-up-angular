@@ -1,0 +1,31 @@
+<!-- sign-in -->
+
+<!-- start section -->
+<section class="wow animate__fadeIn py-0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-5 col-md-6 lg-padding-30px-lr md-padding-15px-lr sm-margin-40px-bottom">
+                <img src="../../../assets/images/img/login-register.png" alt=""> 
+            </div>
+            <div class="col-12 col-xl-5 offset-xl-1 col-md-6 lg-padding-30px-lr md-padding-15px-lr">
+                <form [formGroup]="loginForm"  (ngSubmit)="submitForm(loginForm)" class="border-all border-color-medium-gray rounded margin-35px-bottom padding-4-rem-all lg-margin-35px-top md-padding-2-half-rem-all">
+                    <input class="small-input rounded bg-white margin-20px-bottom required" type="email" formControlName="email" placeholder="email">
+                    <div class="text-red" *ngIf="loginForm.get('email') && loginForm.get('email')?.touched">
+                        <p *ngIf="loginForm.get('email')?.getError('required')">email is required.</p>
+                        <p *ngIf="loginForm.get('email')?.getError('email')">email not match. <br> example@gmail.com</p>
+                      </div>
+
+                    <input class="small-input rounded bg-white margin-20px-bottom required" type="password" formControlName="password" placeholder="password">
+                    <div class="text-red" *ngIf="loginForm.get('password') && loginForm.get('password')?.touched">
+                        <p *ngIf="loginForm.get('password')?.getError('required')">password is required.</p>
+                        <p *ngIf="loginForm.get('password')?.getError('minlength')">password min length 8.</p>
+                        <p *ngIf="loginForm.get('password')?.getError('maxlength')">password max length 16.</p>
+                      </div>
+
+                    <button [disabled]="loginForm.invalid" type="submit" class="btn btn-medium btn-gradient-purple-magenta w-100 submit" id="signupBtn">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end section -->

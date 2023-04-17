@@ -1,0 +1,26 @@
+<section class="w-75 m-auto border">
+  <h2 class="">
+    {{ currentName }} Exam
+  </h2>
+  <!-- <h3 class="mb-3 ml-5">What is fixed disk ?</h3> -->
+  <form [formGroup]="answersForm">
+    <div formArrayName="answers">
+      <div class="" [formGroupName]="i" *ngFor="let item of answers.controls;index as i">
+        <strong><span>Q{{ i + 1 }}</span> .{{ item.value.question }}</strong>
+        <div class="" *ngFor="let choice of item.value.values" >
+          <input type="radio" id="{{ choice.multchoice }}" [value]="choice.multchoice" formControlName="answer"/>
+          <label for="{{ choice.multchoice  }}">{{ choice.multchoice }}</label>
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+  <div class="flex flex-row justify-end items-center">
+    <a
+      (click)="onSubmit()"
+      class="btn btn-dark"
+      >Next</a
+    >
+  </div>
+</section>

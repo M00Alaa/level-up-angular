@@ -6,6 +6,7 @@ import { Error404Component } from './error404/error404.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RequestQuoteComponent } from './request-quote/request-quote.component';
 import { TestingCommissioningComponent } from './testing-commissioning/testing-commissioning.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        canActivate: [AuthGuard],
         component: HomepageComponent,
         data: {
           navConfigs: {
@@ -25,7 +27,18 @@ const routes: Routes = [
         }
       },
       {
-        path: 'products',
+        path: 'sign-up',
+        component: TestingCommissioningComponent,
+        data: {
+          navConfigs: {
+            light: false,
+            withBG: false,
+            static: false,
+          }
+        }
+      },
+      {
+        path: 'sign-in',
         loadChildren: () => import('./services/services.module').then(m => m.ServicesModule),
         data: {
           navConfigs: {
@@ -36,7 +49,8 @@ const routes: Routes = [
         }
       },
       {
-        path: 'portfolio',
+        path: 'about',
+        canActivate: [AuthGuard],
         loadChildren: () => import('./portfolio/portfolio.module').then(m => m.PortfolioModule),
         data: {
           navConfigs: {
@@ -47,7 +61,8 @@ const routes: Routes = [
         }
       },
       {
-        path: 'after-sales',
+        path: 'quizzes',
+        canActivate: [AuthGuard],
         loadChildren: () => import('./images-on-site/images-on-site.module').then(m => m.ImagesOnSiteModule),
         data: {
           navConfigs: {
@@ -58,7 +73,8 @@ const routes: Routes = [
         }
       },
       {
-        path: 'contact-us',
+        path: 'quiz-levels/:name/quistions/:quName',
+        canActivate: [AuthGuard],
         loadChildren: () => import('./contact-us/contact-us.module').then(m => m.ContactUsModule),
         data: {
           navConfigs: {
@@ -69,7 +85,8 @@ const routes: Routes = [
         }
       },
       {
-        path: 'request-quote',
+        path: 'quiz-categories/:name',
+        canActivate: [AuthGuard],
         component: RequestQuoteComponent,
         data: {
           navConfigs: {
@@ -80,7 +97,8 @@ const routes: Routes = [
         }
       },
       {
-        path: 'coming-soon/:id',
+        path: 'quiz-levels/:name',
+        canActivate: [AuthGuard],
         component: ComingSoonComponent,
         data: {
           navConfigs: {
@@ -90,31 +108,6 @@ const routes: Routes = [
           }
         }
       },
-      {
-        path: 'coming-soon',
-        component: ComingSoonComponent,
-        data: {
-          navConfigs: {
-            light: false,
-            withBG: false,
-            static: false,
-          }
-        }
-      },
-      {
-        path: 'testing-commissioning',
-        component: TestingCommissioningComponent,
-        data: {
-          navConfigs: {
-            light: false,
-            withBG: false,
-            static: false,
-          }
-        }
-      },
-     
-
-
 
       {
         path: '**',

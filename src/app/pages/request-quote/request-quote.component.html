@@ -1,0 +1,33 @@
+<!-- start section -->
+<section class="big-section bg-light-blue vh-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-9 col-lg-12 position-relative">
+                <div class="swiper-container black-move" data-slider-options='{ "slidesPerView": 1, "loop": true, "spaceBetween": 30, "autoplay": { "delay": 3000, "disableOnInteraction": false }, "navigation": { "nextEl": ".swiper-button-next-nav", "prevEl": ".swiper-button-previous-nav" }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "992": { "slidesPerView": 3 } }, "effect": "slide" }'>
+                    <div class="swiper-wrapper">
+                        <!-- start services item -->
+                        <div class="swiper-slide" *ngFor="let category of Categories; index as index">
+                            <div class="row m-0 h-100">
+                                <div class="feature-box text-start box-shadow-mediums box-shadow-large-hover bg-white padding-4-rem-all lg-padding-3-rem-all md-padding-4-half-rem-all">
+                                    <div class="feature-box-content w-100">
+                                        <span class="margin-15px-bottom d-block text-extra-medium">0{{index + 1}}</span>
+                                        <h6 class="alt-font font-weight-600 d-block text-extra-dark-gray">{{category.Name}}</h6>
+                                        <div class="h-1px bg-medium-gray margin-25px-bottom w-100"></div>
+                                        <a class="text-small font-weight-500 text-uppercase alt-font d-block text-extra-dark-gray" [routerLink]="['/quiz-levels', category.Name]">Start Exam<i class="feather icon-feather-arrow-right icon-extra-small float-end"></i></a>
+                                    </div>
+                                    <div class="feature-box-overlay bg-white"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end services item -->
+                    </div>
+                </div>
+                <!-- start slider navigation -->
+                <div class="swiper-button-previous-nav swiper-button-prev light slider-navigation-style-07 rounded-circle box-shadow-double-large"><i class="feather icon-feather-arrow-left"></i></div>
+                <div class="swiper-button-next-nav swiper-button-next light slider-navigation-style-07 rounded-circle box-shadow-double-large"><i class="feather icon-feather-arrow-right"></i></div>
+                <!-- end slider navigation -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end section -->

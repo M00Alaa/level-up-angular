@@ -5,7 +5,7 @@ import {
   OnInit,
   Renderer2,
 } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, UntypedFormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { SplashScreenService } from 'src/app/layouts/splash-screen/splash-screen.component';
 
@@ -22,7 +22,7 @@ export class HomepageComponent implements OnInit, AfterViewInit, OnDestroy {
     public lang: TranslateService,
     private render: Renderer2,
     private splashScreen: SplashScreenService,
-    private _fb: FormBuilder
+    private _fb: UntypedFormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -32,6 +32,7 @@ export class HomepageComponent implements OnInit, AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.mainJSActivator();
     this.wordSwapper();
+    this.revCall();
   }
 
   mainJSActivator() {
@@ -47,6 +48,13 @@ export class HomepageComponent implements OnInit, AfterViewInit, OnDestroy {
     let revScript = document.createElement('script');
     revScript.src = '/assets/js/words-swap.js';
     revScript.id = 'WORD_SWAPPER_JS';
+    this.render.appendChild(document.body, revScript);
+  }
+
+  revCall() {
+    let revScript = document.createElement('script');
+    revScript.src = '/assets/js/revcall.js';
+    revScript.id = 'REV_SLIDER';
     this.render.appendChild(document.body, revScript);
   }
 

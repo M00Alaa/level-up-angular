@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { CategoriesService } from '../categories.service';
 
 @Component({
   selector: 'app-coming-soon',
@@ -8,13 +9,31 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./coming-soon.component.less']
 })
 export class ComingSoonComponent implements AfterViewInit {
-  currentId: string = '';
-  products: any;
-  bg = '/assets/images/img/sections-bg/bg-1.jpg';
+  
+  currentName: string = '';
 
-  constructor(private render: Renderer2,
-    public lang: TranslateService,
-    private _ActivatedRoute: ActivatedRoute,) { }
+  levels: any[] = [];
+
+  constructor(private _CategoriesService: CategoriesService, private _ActivatedRoute: ActivatedRoute, private render: Renderer2,
+    public lang: TranslateService){
+    _ActivatedRoute.params.subscribe((res)=>{
+      this.currentName = res['name']
+      console.log(this.currentName);
+    })
+   }
+  
+
+   getLevels(){
+    this._CategoriesService.getLevels(this.currentName).subscribe((res)=>{
+      this.levels = res[0];
+    })
+  }
+
+  
+  ngOnInit(): void {
+    this.getLevels();
+  }
+
 
 
   ngAfterViewInit(): void {

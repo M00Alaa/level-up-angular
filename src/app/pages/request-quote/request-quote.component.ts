@@ -1,5 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { CategoriesService } from '../categories.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -10,11 +12,31 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class RequestQuoteComponent implements OnInit {
 
-  constructor(
-    private render: Renderer2,
-    public lang: TranslateService
-  ) {}
-  ngOnInit(): void { }
+
+  currentName: string = '';
+
+  Categories: any[] = [];
+
+  constructor(private _CategoriesService: CategoriesService, private _ActivatedRoute: ActivatedRoute, private render: Renderer2,
+    public lang: TranslateService){
+    _ActivatedRoute.params.subscribe((res)=>{
+      this.currentName = res['name']
+      console.log(this.currentName);
+    })
+   }
+  
+
+  getCategories(){
+    this._CategoriesService.getCategories(this.currentName).subscribe((res)=>{
+      this.Categories = res;      
+    })
+  }
+
+  
+  ngOnInit(): void {
+    this.getCategories();
+  }
+
 
   ngAfterViewInit(): void {
     setTimeout(() => {
