@@ -1,26 +1,32 @@
-<section class="w-75 m-auto border">
-  <h2 class="">
-    {{ currentName }} Exam
-  </h2>
-  <!-- <h3 class="mb-3 ml-5">What is fixed disk ?</h3> -->
-  <form [formGroup]="answersForm">
-    <div formArrayName="answers">
-      <div class="" [formGroupName]="i" *ngFor="let item of answers.controls;index as i">
-        <strong><span>Q{{ i + 1 }}</span> .{{ item.value.question }}</strong>
-        <div class="" *ngFor="let choice of item.value.values" >
-          <input type="radio" id="{{ choice.multchoice }}" [value]="choice.multchoice" formControlName="answer"/>
-          <label for="{{ choice.multchoice  }}">{{ choice.multchoice }}</label>
-        </div>
+
+
+
+<section class="cover-background big-section xs-no-padding-tb xs-border-tb border-color-medium-gray wow animate__fadeIn" style="background-color: #f3f3f3; visibility: visible; animation-name: fadeIn;">
+  <div class="container xs-no-padding-lr">
+      <div class="row justify-content-center ">
+          <div class="col-12 col-xl-9 col-lg-9 col-md-9 col-sm-11">
+              <div class="text-center bg-white box-shadow-large border-radius-6px padding-5-rem-tb padding-7-rem-lr sm-padding-5-rem-all xs-padding-3-half-rem-lr xs-padding-6-rem-tb xs-no-border-radius">
+                  <span class="alt-font text-medium text-olivine-green text-uppercase font-weight-500 d-block margin-15px-bottom sm-margin-10px-bottom">Start Your Exam</span>
+                  <h5 class="alt-font text-dark-charcoal font-weight-700 text-uppercase letter-spacing-minus-1px margin-40px-bottom w-80 mx-auto xs-w-100">{{ currentName }} Exam</h5>
+                  <!-- start contact form -->
+                  <form [formGroup]="answersForm">
+                    <div formArrayName="answers">
+                      <div class="text-start" [formGroupName]="i" *ngFor="let item of answers.controls;index as i">
+                        <strong class="text-dark-purple mb-3"><span class="text-dark-charcoal">Q{{ i + 1 }}. </span>{{ item.value.question }}</strong>
+                        <div class="" *ngFor="let choice of item.value.values" >
+                          <input class="me-3" type="radio" id="{{ choice.multchoice }}" [value]="choice.multchoice" formControlName="answer"/>
+                          <label for="{{ choice.multchoice  }}">{{ choice.multchoice }}</label>
+                        </div>
+                        <div class=" border-bottom border-color-medium-gray margin-30px-tb"></div>
+                      </div>
+                    </div>
+                    <button class="btn btn-large btn-olivine-green btn-round-edge w-100 no-margin-bottom" (click)="onSubmit()">next</button>
+                  </form>
+                  <p class="w-80 mx-auto text-extra-small line-height-22px m-0 xs-w-100">We are committed to protecting your privacy. We will never collect information about you without your explicit consent.</p>
+                  <!-- end contact form -->
+              </div>
+          </div>
       </div>
-
-    </div>
-  </form>
-
-  <div class="flex flex-row justify-end items-center">
-    <a
-      (click)="onSubmit()"
-      class="btn btn-dark"
-      >Next</a
-    >
   </div>
 </section>
+
