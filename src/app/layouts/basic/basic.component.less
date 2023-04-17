@@ -1,0 +1,29 @@
+.layout{
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+.light-icon{
+    position: fixed;
+    bottom: 25px;
+    right: 25;
+    width: 60px;
+    z-index: -1;
+    opacity: .5;
+     svg {
+        width: 100%;
+        grid-area: logo;
+        place-self: center end;
+    }
+
+     svg .outer {
+        stroke-width: 30px;
+        stroke: var(--gold);
+    }
+
+     svg .inner {
+        fill: #ddd;
+        fill: #ddd;
+        fill: lch(100% 82.34 80.104);
+    }
+}

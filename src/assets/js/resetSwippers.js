@@ -1,0 +1,4 @@
+
+
+window.resetSwiperLoop();
+window.setupSwiper();
