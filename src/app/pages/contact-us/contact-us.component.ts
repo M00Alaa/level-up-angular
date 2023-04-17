@@ -1,9 +1,5 @@
 import { AfterViewInit, Component, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { timer } from 'rxjs';
-import { ContactService } from 'src/app/core/services/contact.service';
-import Swal from 'sweetalert2';
 import { CategoriesService } from '../categories.service';
 
 import { FormGroup, FormControl,FormArray, FormBuilder } from '@angular/forms'
@@ -32,8 +28,6 @@ export class ContactUsComponent implements AfterViewInit{
     private _Router: Router,
     private _ActivatedRoute: ActivatedRoute,
     private render: Renderer2, 
-    private contact: ContactService,
-    private translate: TranslateService,
   ) {
     _ActivatedRoute.params.subscribe((res) => {
       this.currentName = res['name'];
@@ -105,28 +99,43 @@ export class ContactUsComponent implements AfterViewInit{
     }
     console.log(this.finalAnswers);
 
-    if (this.levelName == 'test') {
-      this._CategoriesService.getTestResult(this.currentName, this.finalAnswers).subscribe((res)=>{
+    this._CategoriesService.getResults(this.currentName, this.levelName, this.finalAnswers).subscribe((res)=>{
   
-        console.log(res);
+      // this.result = res;
+      console.log(res);
+
+      this.finalAnswers = [];
+      console.log(this.finalAnswers);
+      
+      
+
+      // this._Router.navigate([`levels/${this.currentName}/result/${this.levelName}`, this.result])
+    })
+
+    // if (this.levelName == 'test') {
+    //   this._CategoriesService.getTestResult(this.currentName, this.finalAnswers).subscribe((res)=>{
+  
+    //     console.log(res);
         
-        this.result = res;
-        console.log(this.result);
+    //     this.result = res;
+    //     console.log(this.result);
         
   
-        // this._Router.navigate([`levels/${this.currentName}/result/${this.levelName}`, this.result])
-      })
-    }
-    else{
-      this._CategoriesService.getResults(this.currentName, this.levelName, this.finalAnswers).subscribe((res)=>{
+    //   })
+    // }
+    // else{
+    //   this._CategoriesService.getResults(this.currentName, this.levelName, this.finalAnswers).subscribe((res)=>{
   
-        this.result = res;
-        console.log(this.result);
+    //     this.result = res;
+    //     console.log(this.result);
+
+    //     this.finalAnswers = [];
+    //     console.log(this.finalAnswers);
+        
         
   
-        this._Router.navigate([`levels/${this.currentName}/result/${this.levelName}`, this.result])
-      })
-    }
+    //   })
+    // }
   }
   
 

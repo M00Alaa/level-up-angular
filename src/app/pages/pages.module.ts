@@ -10,6 +10,8 @@ import { SlicePipe } from './homepage/slice.pipe';
 import { RequestQuoteComponent } from './request-quote/request-quote.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { TestingCommissioningComponent } from './testing-commissioning/testing-commissioning.component';
+import { AuthInterceptor } from './auth.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 
@@ -29,6 +31,13 @@ import { TestingCommissioningComponent } from './testing-commissioning/testing-c
     ReactiveFormsModule,
     PagesRoutingModule,
     LayoutsModule
-  ]
+  ],
+  providers:[
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
 })
 export class PagesModule { }
