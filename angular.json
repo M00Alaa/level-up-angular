@@ -3,8 +3,7 @@
   "cli": {
     "analytics": false,
     "cache": {
-      "environment": "all",
-      "path": ".cache/ng"
+      "enabled": false
     }
   },
   "version": 1,
