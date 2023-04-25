@@ -21,13 +21,13 @@ export interface NavConfigs {
 })
 export class TopbarComponent implements OnInit {
 
-  isLogin:boolean = false
+  isLogin: boolean = false
 
-  logOut(){
+  logOut() {
     this._AuthService.logOut()
   }
   ngOnInit(): void {
-    
+
   }
 
   @ViewChild('navbar') navbar!: ElementRef;
@@ -44,7 +44,7 @@ export class TopbarComponent implements OnInit {
     public lang: TranslateService,
     public langService: LanguageService,
     activatedRoute: ActivatedRoute,
-    private _AuthService:AuthService
+    private _AuthService: AuthService
   ) {
     router.events
       .pipe(
@@ -65,11 +65,11 @@ export class TopbarComponent implements OnInit {
       });
 
     this._AuthService.currentUser.subscribe({
-      next:()=>{
-        if(this._AuthService.currentUser.getValue() != null){
+      next: () => {
+        if (this._AuthService.currentUser.getValue() != null) {
           this.isLogin = true
         }
-        else{
+        else {
           this.isLogin = false
         }
       }
