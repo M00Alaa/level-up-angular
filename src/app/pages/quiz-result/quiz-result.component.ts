@@ -1,0 +1,64 @@
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
+import { FormArray, UntypedFormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { SplashScreenService } from 'src/app/layouts/splash-screen/splash-screen.component';
+
+@Component({
+  selector: 'app-quiz-result',
+  templateUrl: './quiz-result.component.html',
+  styleUrls: ['./quiz-result.component.less']
+})
+export class QuizResultComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  constructor(
+    public lang: TranslateService,
+    private render: Renderer2,
+    private splashScreen: SplashScreenService,
+    private _fb: UntypedFormBuilder
+  ) { }
+
+  ngOnInit(): void {
+    this.splashScreen.show();
+  }
+
+  ngAfterViewInit(): void {
+    this.mainJSActivator();
+    this.wordSwapper();
+    this.revCall();
+  }
+
+  mainJSActivator() {
+    let revScript = document.createElement('script');
+    revScript.src = '/assets/js/main.js';
+    revScript.id = 'MAIN_JS';
+    this.render.appendChild(document.body, revScript);
+    setTimeout(() => {
+      this.splashScreen.hide();
+    }, 100);
+  }
+  wordSwapper() {
+    let revScript = document.createElement('script');
+    revScript.src = '/assets/js/words-swap.js';
+    revScript.id = 'WORD_SWAPPER_JS';
+    this.render.appendChild(document.body, revScript);
+  }
+
+  revCall() {
+    let revScript = document.createElement('script');
+    revScript.src = '/assets/js/revcall.js';
+    revScript.id = 'REV_SLIDER';
+    this.render.appendChild(document.body, revScript);
+  }
+
+  ngOnDestroy(): void {
+    document.getElementById('REV_SLIDER')?.remove();
+    document.getElementById('MAIN_JS')?.remove();
+    document.getElementById('WORD_SWAPPER_JS')?.remove();
+  }
+}

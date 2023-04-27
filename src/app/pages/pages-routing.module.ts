@@ -7,6 +7,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { RequestQuoteComponent } from './request-quote/request-quote.component';
 import { TestingCommissioningComponent } from './testing-commissioning/testing-commissioning.component';
 import { AuthGuard } from './auth.guard';
+import { QuizResultComponent } from './quiz-result/quiz-result.component';
 
 const routes: Routes = [
   {
@@ -100,6 +101,18 @@ const routes: Routes = [
         path: 'quiz-levels/:name',
         canActivate: [AuthGuard],
         component: ComingSoonComponent,
+        data: {
+          navConfigs: {
+            light: false,
+            withBG: false,
+            static: false,
+          }
+        }
+      },
+      {
+        path: 'quiz-result',
+        canActivate: [AuthGuard],
+        component: QuizResultComponent,
         data: {
           navConfigs: {
             light: false,

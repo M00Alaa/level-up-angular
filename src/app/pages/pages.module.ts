@@ -12,6 +12,7 @@ import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { TestingCommissioningComponent } from './testing-commissioning/testing-commissioning.component';
 import { AuthInterceptor } from './auth.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { QuizResultComponent } from './quiz-result/quiz-result.component';
 
 
 
@@ -23,6 +24,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     SlicePipe,
     ComingSoonComponent,
     TestingCommissioningComponent,
+    QuizResultComponent,
     
   ],
   imports: [
