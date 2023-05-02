@@ -162,7 +162,7 @@
 <header *ngIf="true">
   <nav
     class="navbar navbar-expand-lg navbar-boxed navbar-light bg-white header-light fixed-top header-reverse-scroll py-0">
-    <div class="container-lg nav-header-container">
+    <div class="container-lg nav-header-container d-flex align-items-center">
       <div class="col-6 col-lg-2 me-auto ps-lg-0">
         <a class="navbar-brand" routerLink="/">
           <img src="../../../../assets/images/img/logo-black.png" class="default-logo" alt="">
@@ -180,19 +180,7 @@
         </button>
         <div class=" collapse navbar-collapse justify-content-center" id="navbarNav">
           <ul class="navbar-nav alt-font">
-            <!-- start menu item -->
-            <li *ngIf="!isLogin" data-wow-duration=".2s"
-              class="nav-item animate__animated animate__delay-3s animate__fadeInDown" data-wow-offset="0"
-              data-wow-delay="0.2s"><a routerLinkActive="active" routerLink="/sign-in" (click)="hideNavbar()"
-                class="nav-link">signIn</a>
-            </li>
-            <!-- end menu item -->
-            <!-- start menu item -->
-            <li *ngIf="!isLogin" data-wow-duration=".2s"
-              class="nav-item animate__animated animate__delay-3s animate__fadeInDown d-flex align-items-center"
-              data-wow-offset="0" data-wow-delay="0.4s"><a routerLink="/sign-up" (click)="hideNavbar()"
-                class="btn btn-medium rounded btn-gradient-purple-magenta ">Register</a></li>
-            <!-- end menu item -->
+
 
             <li *ngIf="isLogin" data-wow-duration=".2s" class="nav-item animate__animated animate__fadeInDown"
               data-wow-offset="0" data-wow-delay="0.2s">
@@ -226,12 +214,25 @@
       <div class="col-auto col-lg-2 text-end pe-0 font-size-0">
         <ul class="navbar-nav alt-font">
 
+          <!-- start menu item -->
+          <li *ngIf="!isLogin" data-wow-duration=".2s"
+            class="nav-item animate__animated animate__delay-3s animate__fadeInDown" data-wow-offset="0"
+            data-wow-delay="0.2s"><a routerLinkActive="active" routerLink="/sign-in" (click)="hideNavbar()"
+              class="nav-link">signIn</a>
+          </li>
+          <!-- end menu item -->
+          <!-- start menu item -->
+          <li *ngIf="!isLogin" data-wow-duration=".2s"
+            class="nav-item animate__animated animate__delay-3s animate__fadeInDown d-flex align-items-center"
+            data-wow-offset="0" data-wow-delay="0.4s"><a routerLink="/sign-up" (click)="hideNavbar()"
+              class="btn btn.btn-extra-large rounded btn-gradient-purple-magenta py-2">Register</a></li>
+          <!-- end menu item -->
 
           <li *ngIf="isLogin" data-wow-duration=".2s"
             class="nav-item animate__animated animate__delay-4s animate__fadeInDown d-flex align-items-center"
             data-wow-offset="0" data-wow-delay="0.8s">
             <a routerLinkActive="text-radical-red" (click)="logOut(); hideNavbar()"
-              class="btn btn-sm mx-3 mx-xl-0 btn-fast-blue btn-rounded">
+              class="btn btn.btn-medium mx-3 mx-xl-0 btn-fast-blue btn-rounded py-2 px-3">
               logOut
             </a>
           </li>
