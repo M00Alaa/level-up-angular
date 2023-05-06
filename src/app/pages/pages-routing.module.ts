@@ -110,7 +110,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'quiz-result',
+        path: 'quiz-levels/:name/quiz-result/:quName',
         canActivate: [AuthGuard],
         component: QuizResultComponent,
         data: {

@@ -5,22 +5,26 @@
             <div
                 class="col-12 col-lg-4 col-md-6 fancy-text-box-style-01 text-center text-md-start md-margin-50px-bottom sm-margin-40px-bottom wow animate__fadeIn">
                 <div class="fancy-text-box padding-3-half-rem-all md-padding-4-rem-all xs-padding-30px-all">
-                    <div class="fancy-text-box-border-left border-color-primary"></div>
+                    <div class="fancy-text-box-border-left"
+                        [ngClass]="resultMessage == 'faild' ? 'border-color-primary' : 'border-color-shamrock-green'">
+                    </div>
                     <h1
                         class="alt-font fancy-text-content font-weight-600 text-extra-dark-gray d-inline-block align-middle letter-spacing-minus-5px">
-                        28
+                        {{resultDegree}}
                     </h1>
                     <div
                         class="alt-font text-extra-medium text-extra-dark-gray font-weight-500 text-start d-inline-block align-middle w-90px mx-auto line-height-20px position-relative top-minus-4px">
                         This is your degree</div>
-                    <div class="fancy-text-box-border-right border-color-primary"></div>
+                    <div class="fancy-text-box-border-right"
+                        [ngClass]="resultMessage == 'faild' ? 'border-color-primary' : 'border-color-shamrock-green'">
+                    </div>
                 </div>
             </div>
             <div class="col-12 col-lg-3 col-md-4 text-center text-md-start wow animate__fadeIn" data-wow-delay="0.2s">
                 <span class="alt-font text-medium text-uppercase margin-20px-bottom d-block">You are </span>
-                <div
-                    class="alt-font text-extra-large text-shamrock-green font-weight-500 line-height-34px w-85 lg-w-100 sm-margin-15px-bottom">
-                    Success
+                <div class="alt-font text-extra-large font-weight-500 line-height-34px w-85 lg-w-100 sm-margin-15px-bottom"
+                    [ngClass]="resultMessage == 'faild' ? 'text-red' : 'text-shamrock-green'">
+                    {{resultMessage}}
                 </div>
             </div>
             <div class="col-12 col-lg-5 col-md-10 text-center text-md-start wow animate__fadeIn" data-wow-delay="0.4s">
@@ -29,8 +33,12 @@
                     incididunt ut labore et dolore magna ut enim ad minim veniam nostrud exercitation ullamco laboris
                     nisi ut aliquip ex ea commodo consequat.
                 </p>
-                <a routerLink="/quizzes" class="btn btn-link thin btn-extra-large text-extra-dark-gray">go to next
+                <a *ngIf="resultMessage == 'success'" routerLink="/quizzes"
+                    class="btn btn-link thin btn-extra-large text-extra-dark-gray">go to next
                     level
+                </a>
+                <a *ngIf="resultMessage == 'faild'" routerLink="/quizzes"
+                    class="btn btn-link thin btn-extra-large text-extra-dark-gray">bla bla for now
                 </a>
             </div>
         </div>

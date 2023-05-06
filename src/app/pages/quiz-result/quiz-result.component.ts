@@ -8,6 +8,8 @@ import {
 import { FormArray, UntypedFormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { SplashScreenService } from 'src/app/layouts/splash-screen/splash-screen.component';
+import { CategoriesService } from '../categories.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-result',
@@ -16,15 +18,48 @@ import { SplashScreenService } from 'src/app/layouts/splash-screen/splash-screen
 })
 export class QuizResultComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  currentName: string = '';
+  levelName: string = '';
+  resultMessage: any;
+  resultDegree: any;
+
+  Resources: any[] = [];
+
+
   constructor(
     public lang: TranslateService,
     private render: Renderer2,
     private splashScreen: SplashScreenService,
-    private _fb: UntypedFormBuilder
-  ) { }
+    private _fb: UntypedFormBuilder,
+    private _CategoriesService: CategoriesService,
+    private _ActivatedRoute: ActivatedRoute
+  ) {
+    _ActivatedRoute.params.subscribe((res) => {
+      this.currentName = res['name'];
+
+      this.levelName = res['quName'];
+
+      this.resultMessage = res['message'];
+
+      this.resultDegree = res['degrees'];
+    });
+  }
+
+  getResources() {
+    this._CategoriesService
+      .getResources(this.currentName, this.levelName)
+      .subscribe((res) => {
+        this.Resources = res[0].Resource.R_book;
+        console.log(this.Resources);
+      });
+  }
 
   ngOnInit(): void {
     this.splashScreen.show();
+
+    // if (this.resultMessage == 'faild') {
+    //   this.getResources();
+    // }
   }
 
   ngAfterViewInit(): void {

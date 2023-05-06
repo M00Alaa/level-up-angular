@@ -15,6 +15,10 @@ export class ContactUsComponent implements AfterViewInit {
   currentName: string = '';
   levelName: string = '';
 
+  message: string = '';
+  level: string = '';
+  data: string = '';
+
   result: any;
 
   questions: any[] = [];
@@ -64,6 +68,7 @@ export class ContactUsComponent implements AfterViewInit {
         .subscribe((res) => {
 
           this.questions = res;
+          console.log(this.questions);
           this.questions.forEach(element => {
             this.newAnswer(element.E_Q, element.E_ID, element.Exam_choice)
           });
@@ -75,8 +80,12 @@ export class ContactUsComponent implements AfterViewInit {
       this._CategoriesService
         .getQuestions(this.currentName, this.levelName)
         .subscribe((res) => {
-          if (res.message == 'faild') {
-            console.log('Your level is ' + res.date);
+          if (res[0].message == 'faild') {
+            this.message = 'failed'
+            this.level = res[0].level
+            this.data = res[0].message2
+            console.log(res);
+            console.log('res');
           }
           else {
             this.questions = res;
@@ -100,43 +109,34 @@ export class ContactUsComponent implements AfterViewInit {
     }
     console.log(this.finalAnswers);
 
-    this._CategoriesService.getResults(this.currentName, this.levelName, this.finalAnswers).subscribe((res) => {
+    // this._CategoriesService.getResults(this.currentName, this.levelName, this.finalAnswers).subscribe((res) => {
 
-      // this.result = res;
-      console.log(res);
+    //   this.result = res;
+    //   console.log(this.result);
 
-      this.finalAnswers = [];
-      console.log(this.finalAnswers);
+    //   this._Router.navigate([`quiz-levels//${this.currentName}/quiz-result/${this.levelName}`, this.result])
+    // })
 
+    if (this.levelName == 'test') {
+      this._CategoriesService.getTestResult(this.currentName, this.finalAnswers).subscribe((res) => {
 
+        console.log(res);
 
-      // this._Router.navigate([`levels/${this.currentName}/result/${this.levelName}`, this.result])
-    })
-
-    // if (this.levelName == 'test') {
-    //   this._CategoriesService.getTestResult(this.currentName, this.finalAnswers).subscribe((res)=>{
-
-    //     console.log(res);
-
-    //     this.result = res;
-    //     console.log(this.result);
+        this.result = res;
+        console.log(this.result);
 
 
-    //   })
-    // }
-    // else{
-    //   this._CategoriesService.getResults(this.currentName, this.levelName, this.finalAnswers).subscribe((res)=>{
+      })
+    }
+    else {
+      this._CategoriesService.getResults(this.currentName, this.levelName, this.finalAnswers).subscribe((res) => {
 
-    //     this.result = res;
-    //     console.log(this.result);
+        this.result = res;
+        console.log(this.result);
 
-    //     this.finalAnswers = [];
-    //     console.log(this.finalAnswers);
-
-
-
-    //   })
-    // }
+        this._Router.navigate([`quiz-levels//${this.currentName}/quiz-result/${this.levelName}`, this.result])
+      })
+    }
   }
 
 
