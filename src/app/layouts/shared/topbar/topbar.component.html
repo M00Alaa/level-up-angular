@@ -1,7 +1,7 @@
 <!-- start header -->
 <header>
   <nav
-    class="navbar navbar-expand-lg navbar-boxed navbar-light bg-white header-light fixed-top header-reverse-scroll py-0">
+    class="navbar navbar-expand-lg navbar-boxed navbar-light bg-white header-light fixed-top header-reverse-scroll py-2">
     <div class="container-lg nav-header-container d-flex align-items-center">
       <div class="col-6 col-lg-2 me-auto ps-lg-0">
         <a class="navbar-brand" routerLink="/">
@@ -10,7 +10,7 @@
           <img src="../../../../assets/images/img/logo-black.png" class="mobile-logo" alt="">
         </a>
       </div>
-      <div class="col-auto col-lg-8 menu-order px-lg-0">
+      <div *ngIf="isLogin" class="col-auto col-lg-12 menu-order px-lg-0">
         <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-label="Toggle navigation">
           <span class="navbar-toggler-line"></span>
@@ -18,62 +18,73 @@
           <span class="navbar-toggler-line"></span>
           <span class="navbar-toggler-line"></span>
         </button>
-        <div class=" collapse navbar-collapse justify-content-center" id="navbarNav">
+        <div class=" collapse navbar-collapse align-items-center justify-content-center" id="navbarNav">
           <ul class="navbar-nav alt-font">
-
-
-            <li *ngIf="isLogin" data-wow-duration=".2s" class="nav-item animate__animated animate__fadeInDown"
-              data-wow-offset="0" data-wow-delay="0.2s">
-              <a routerLinkActive="active" routerLink="/" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
+            <li data-wow-duration=".2s" class=" mx-3 mt-3 animate__animated animate__fadeInDown" data-wow-offset="0"
+              data-wow-delay="0.2s">
+              <a routerLink="/" routerLinkActive="activee" routerLink="/" [routerLinkActiveOptions]="{exact: true}"
+                class="btn btn-extra-large btn-expand-ltr text-extra-dark-gray text-white-hover btn-rounded d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr"><i
+                  class="solid-icon-Home dropdown-toggle me-0" style="opacity: 1 !important;"></i>
+                Home<span class="bg-gradient-primary-light"></span></a>
+              <!-- <a routerLink="/" class="btn btn-extra-large btn-transparent-dark-gray btn-box-shadow-flat">
                 <i class="solid-icon-Home dropdown-toggle"></i>
                 Home
-              </a>
+              </a> -->
             </li>
 
-            <li *ngIf="isLogin" data-wow-duration=".2s"
-              class="nav-item animate__animated animate__delay-3s animate__fadeInDown" data-wow-offset="0"
-              data-wow-delay="0.4s">
-              <a routerLinkActive="active" routerLink="/about" class="nav-link">
+            <li data-wow-duration=".2s" class=" mx-3 mt-3 animate__animated animate__delay-3s animate__fadeInDown"
+              data-wow-offset="0" data-wow-delay="0.4s">
+              <a routerLink="/about" routerLinkActive="activee"
+                class="btn btn-extra-large btn-expand-ltr text-extra-dark-gray text-white-hover btn-rounded d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr">About
+                us<span class="bg-gradient-primary-light"></span></a>
+              <!-- <a routerLink="/about" class="btn btn-extra-large btn-transparent-dark-gray btn-box-shadow-flat">
                 About us
-              </a>
+              </a> -->
             </li>
 
-            <li *ngIf="isLogin" data-wow-duration=".2s"
-              class="nav-item animate__animated animate__delay-3s animate__fadeInDown" data-wow-offset="0"
-              data-wow-delay="0.6s">
-              <a routerLinkActive="active" routerLink="/quizzes" class="nav-link">
+            <li data-wow-duration=".2s" class=" mx-3 mt-3 animate__animated animate__delay-3s animate__fadeInDown"
+              data-wow-offset="0" data-wow-delay="0.6s">
+              <a routerLink="/quizzes" routerLinkActive="activee"
+                class="btn btn-extra-large btn-expand-ltr text-extra-dark-gray text-white-hover btn-rounded d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr">
+                Our Exams Categories<span class="bg-gradient-primary-light"></span></a>
+
+              <!-- <a routerLink="/quizzes" class="btn btn-extra-large btn-transparent-dark-gray btn-box-shadow-flat">
                 Our Exams Categories
-              </a>
+              </a> -->
+            </li>
+
+            <li data-wow-duration=".2s"
+              class="ms-4 nav-item animate__animated animate__delay-4s animate__fadeInDown d-flex align-items-center"
+              data-wow-offset="0" data-wow-delay="0.8s">
+              <a (click)="logOut();"
+                class="btn btn-extra-large btn-transparent-dark-gray btn-box-shadow-flat btn-expand-ltr d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr">logOut</a>
+              <!-- <a routerLinkActive="text-radical-red" (click)="logOut();"
+              class="btn btn.btn-medium mx-3 mx-xl-0 btn-fast-blue btn-rounded py-2 px-3">
+              logOut
+            </a> -->
             </li>
 
 
           </ul>
         </div>
       </div>
-      <div class="col-auto col-lg-2 text-end pe-0 font-size-0">
+      <div *ngIf="!isLogin" class="col-auto col-lg-2 text-end pe-0 font-size-0">
         <ul class="navbar-nav alt-font">
 
           <!-- start menu item -->
-          <li *ngIf="!isLogin" data-wow-duration=".2s"
-            class="nav-item animate__animated animate__delay-3s animate__fadeInDown" data-wow-offset="0"
-            data-wow-delay="0.2s"><a routerLinkActive="active" routerLink="/sign-in" class="nav-link">signIn</a>
+          <li data-wow-duration=".2s" class="nav-item animate__animated animate__delay-3s animate__fadeInDown"
+            data-wow-offset="0" data-wow-delay="0.2s"><a routerLinkActive="active" routerLink="/sign-in"
+              class="nav-link">signIn</a>
           </li>
           <!-- end menu item -->
           <!-- start menu item -->
-          <li *ngIf="!isLogin" data-wow-duration=".2s"
+          <li data-wow-duration=".2s"
             class="nav-item animate__animated animate__delay-3s animate__fadeInDown d-flex align-items-center"
             data-wow-offset="0" data-wow-delay="0.4s"><a routerLink="/sign-up"
               class="btn btn.btn-extra-large rounded btn-gradient-purple-magenta py-2">Register</a></li>
           <!-- end menu item -->
 
-          <li *ngIf="isLogin" data-wow-duration=".2s"
-            class="nav-item animate__animated animate__delay-4s animate__fadeInDown d-flex align-items-center"
-            data-wow-offset="0" data-wow-delay="0.8s">
-            <a routerLinkActive="text-radical-red" (click)="logOut();"
-              class="btn btn.btn-medium mx-3 mx-xl-0 btn-fast-blue btn-rounded py-2 px-3">
-              logOut
-            </a>
-          </li>
+
         </ul>
 
       </div>

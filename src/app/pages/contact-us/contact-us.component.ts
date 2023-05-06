@@ -66,12 +66,19 @@ export class ContactUsComponent implements AfterViewInit {
       this._CategoriesService
         .getTestQuestions(this.currentName)
         .subscribe((res) => {
+          console.log(res);
 
-          this.questions = res;
-          console.log(this.questions);
-          this.questions.forEach(element => {
-            this.newAnswer(element.E_Q, element.E_ID, element.Exam_choice)
-          });
+          if (res[0].message == 'faild') {
+            this.message = 'failed'
+            this.level = res[0].level
+            this.data = res[0].message2
+          }
+          else {
+            this.questions = res;
+            this.questions.forEach(element => {
+              this.newAnswer(element.E_Q, element.E_ID, element.Exam_choice)
+            });
+          }
 
           console.log(res);
         });
@@ -80,16 +87,15 @@ export class ContactUsComponent implements AfterViewInit {
       this._CategoriesService
         .getQuestions(this.currentName, this.levelName)
         .subscribe((res) => {
+          console.log(res);
+
           if (res[0].message == 'faild') {
             this.message = 'failed'
             this.level = res[0].level
             this.data = res[0].message2
-            console.log(res);
-            console.log('res');
           }
           else {
             this.questions = res;
-            console.log(this.questions)
             this.questions.forEach(element => {
               this.newAnswer(element.Quction.L_Q, element.Q_ID, element.Quction.Q_choice)
             });
@@ -109,14 +115,6 @@ export class ContactUsComponent implements AfterViewInit {
     }
     console.log(this.finalAnswers);
 
-    // this._CategoriesService.getResults(this.currentName, this.levelName, this.finalAnswers).subscribe((res) => {
-
-    //   this.result = res;
-    //   console.log(this.result);
-
-    //   this._Router.navigate([`quiz-levels//${this.currentName}/quiz-result/${this.levelName}`, this.result])
-    // })
-
     if (this.levelName == 'test') {
       this._CategoriesService.getTestResult(this.currentName, this.finalAnswers).subscribe((res) => {
 
@@ -125,7 +123,7 @@ export class ContactUsComponent implements AfterViewInit {
         this.result = res;
         console.log(this.result);
 
-
+        this._Router.navigate([`quiz-levels//${this.currentName}/quiz-result/${this.levelName}`, this.result])
       })
     }
     else {

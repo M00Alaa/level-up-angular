@@ -23,6 +23,8 @@ export class QuizResultComponent implements OnInit, AfterViewInit, OnDestroy {
   resultMessage: any;
   resultDegree: any;
 
+  isTest: boolean = false;
+
   Resources: any[] = [];
 
 
@@ -39,9 +41,22 @@ export class QuizResultComponent implements OnInit, AfterViewInit, OnDestroy {
 
       this.levelName = res['quName'];
 
-      this.resultMessage = res['message'];
 
-      this.resultDegree = res['degrees'];
+      if (res['message']) {
+        this.resultMessage = res['message'];
+      }
+      if (res['Level']) {
+        this.isTest = true
+        this.resultMessage = res['Level'];
+      }
+
+      if (res['degrees']) {
+        this.resultDegree = res['degrees'];
+      }
+      else {
+        this.resultDegree = res['Degree'];
+      }
+
     });
   }
 
@@ -49,7 +64,7 @@ export class QuizResultComponent implements OnInit, AfterViewInit, OnDestroy {
     this._CategoriesService
       .getResources(this.currentName, this.levelName)
       .subscribe((res) => {
-        this.Resources = res[0].Resource.R_book;
+        this.Resources = res[0].Resource.R_book; /** this is our resources array => show it in html */
         console.log(this.Resources);
       });
   }
@@ -57,9 +72,9 @@ export class QuizResultComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.splashScreen.show();
 
-    // if (this.resultMessage == 'faild') {
-    //   this.getResources();
-    // }
+    if (this.resultMessage == 'faild') {
+      this.getResources();
+    }
   }
 
   ngAfterViewInit(): void {

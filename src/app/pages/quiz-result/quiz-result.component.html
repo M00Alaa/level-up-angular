@@ -21,25 +21,49 @@
                 </div>
             </div>
             <div class="col-12 col-lg-3 col-md-4 text-center text-md-start wow animate__fadeIn" data-wow-delay="0.2s">
-                <span class="alt-font text-medium text-uppercase margin-20px-bottom d-block">You are </span>
+                <span *ngIf="!isTest" class="alt-font text-medium text-uppercase margin-20px-bottom d-block">You are
+                </span>
+                <span *ngIf="isTest" class="alt-font text-medium text-uppercase margin-20px-bottom d-block">Your Level
+                    is </span>
                 <div class="alt-font text-extra-large font-weight-500 line-height-34px w-85 lg-w-100 sm-margin-15px-bottom"
                     [ngClass]="resultMessage == 'faild' ? 'text-red' : 'text-shamrock-green'">
                     {{resultMessage}}
                 </div>
             </div>
             <div class="col-12 col-lg-5 col-md-10 text-center text-md-start wow animate__fadeIn" data-wow-delay="0.4s">
-                <p class="w-85 lg-w-100">
-                    Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor
-                    incididunt ut labore et dolore magna ut enim ad minim veniam nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat.
-                </p>
-                <a *ngIf="resultMessage == 'success'" routerLink="/quizzes"
+
+                <a *ngIf="isTest" routerLink="/quiz-levels/{{currentName}}"
+                    class="btn btn-link thin btn-extra-large text-extra-dark-gray">back to levels area
+                </a>
+                <a *ngIf="resultMessage == 'success'" routerLink="/quiz-levels/{{currentName}}"
                     class="btn btn-link thin btn-extra-large text-extra-dark-gray">go to next
                     level
                 </a>
-                <a *ngIf="resultMessage == 'faild'" routerLink="/quizzes"
-                    class="btn btn-link thin btn-extra-large text-extra-dark-gray">bla bla for now
+
+
+                <a *ngIf="resultMessage == 'faild'" href="#modal-popup3"
+                    class="btn btn-extra-large btn-transparent-dark-gray popup-with-move-anim btn-box-shadow-flat">See
+                    Resources you should study first
                 </a>
+
+                <a *ngIf="resultMessage == 'faild'" routerLink="/quiz-levels/{{currentName}}"
+                    class="mt-3 btn btn-extra-large btn-transparent-dark-gray popup-with-move-anim btn-box-shadow-flat">back
+                    to levels area
+                </a>
+                <!-- <a class="btn btn-medium btn-medium btn-round-edge btn-fast-blue popup-with-move-anim"
+                        href="#modal-popup3">Open with fade-zoom animation</a> -->
+                <!-- start modal pop-up -->
+                <div id="modal-popup3"
+                    class="zoom-anim-dialog col-11 col-xl-3 col-lg-10 col-md-10 col-sm-12 mx-auto bg-white text-center modal-popup-main padding-4-half-rem-all mfp-hide border-radius-6px sm-padding-2-half-rem-lr">
+                    <!-- <span
+                        class="text-extra-dark-gray text-uppercase alt-font text-extra-large font-weight-600 margin-15px-bottom d-block">Open
+                        with fade-zoom animation</span> -->
+                    <a href="{{item.book}}" target="_blank" *ngFor="let item of Resources; index as i"
+                        class="btn btn-extra-large btn-expand-ltr text-extra-dark-gray text-white-hover btn-rounded d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr">
+                        Resource {{i + 1}}<span class="bg-green"></span></a>
+                    <hr>
+                    <!-- <a class="btn btn-small btn-transparent-light-gray popup-modal-dismiss mt-3" href="#">Dismiss</a> -->
+                </div>
             </div>
         </div>
     </div>
