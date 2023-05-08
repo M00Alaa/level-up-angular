@@ -26,17 +26,18 @@ export class ServicesComponent implements AfterViewInit {
           this._AuthService.saveCurrentUser()
           // this.toastr.success('logged in success', '');
           console.log('logged in success');
-          
+
           this._Router.navigate(['/'])
         }
         else {
           // this.toastr.error(res, 'error message!');
-          console.log('error message!' + res);
-          
+
+          alert(res);
+
         }
 
         console.log(res);
-        
+
       }
     })
 
