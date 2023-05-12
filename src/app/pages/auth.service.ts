@@ -9,14 +9,14 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  constructor(private _HttpClient: HttpClient, private _Router:Router) { 
-    if(localStorage.getItem('token') != null){
+  constructor(private _HttpClient: HttpClient, private _Router: Router) {
+    if (localStorage.getItem('token') != null) {
       this.saveCurrentUser()
     }
   }
 
   // baseUrl: string = 'https://sticky-note-fe.vercel.app/'
-  baseUrl: string = 'http://eslamalikhalil-001-site1.btempurl.com/api/'
+  baseUrl: string = 'http://level.somee.com/api/'
 
   username: string = ''
 
@@ -24,7 +24,7 @@ export class AuthService {
 
   saveCurrentUser() {
     let token = JSON.stringify(localStorage.getItem('token'))
-    let decode:any = Jwt_decode(token)
+    let decode: any = Jwt_decode(token)
     this.currentUser.next(decode) //login
 
     this.username = decode.first_name
@@ -38,7 +38,7 @@ export class AuthService {
     return this._HttpClient.post(`${this.baseUrl}jwt`, data)
   }
 
-  logOut(){
+  logOut() {
     localStorage.removeItem('token')
     this.currentUser.next(null)
     this._Router.navigate(['/sign-in'])
