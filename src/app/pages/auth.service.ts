@@ -16,7 +16,7 @@ export class AuthService {
   }
 
   // baseUrl: string = 'https://sticky-note-fe.vercel.app/'
-  baseUrl: string = 'http://level.somee.com/api/'
+  baseUrl: string = 'https://level.somee.com/api/'
 
   username: string = ''
 
