@@ -1,13 +1,11 @@
 <!-- sign-up -->
 
 <!-- start section -->
-<section class="wow animate__fadeIn">
+<section class="wow animate__fadeIn  cover-background background-position-center-bottom "
+  style="background-image:url('../../../../assets/images/img/login-reister-bg.jpg'); margin-top: -60px;">
   <div class="container">
-    <div class="row justify-content-center align-items-center">
+    <div class="row align-items-center h-720px lg-h-550px md-h-550px xs-h-750px">
       <div class="col-12 col-xl-5 col-md-6 lg-padding-30px-lr md-padding-15px-lr sm-margin-40px-bottom">
-        <img src="../../../assets/images/img/login-register.jpeg" alt="">
-      </div>
-      <div class="col-12 col-xl-5 offset-xl-1 col-md-6 lg-padding-30px-lr md-padding-15px-lr">
         <form [formGroup]="registerForm" (ngSubmit)="submitForm(registerForm)"
           class="border-all border-color-medium-gray rounded margin-35px-bottom padding-4-rem-all lg-margin-35px-top md-padding-2-half-rem-all">
 
@@ -51,6 +49,10 @@
           <button [disabled]="registerForm.invalid" type="submit"
             class="btn btn-medium btn-gradient-purple-magenta w-100 submit" id="signupBtn">Register</button>
         </form>
+
+      </div>
+      <div class="col-12 col-xl-5 offset-xl-1 col-md-6 lg-padding-30px-lr md-padding-15px-lr">
+        <img src="../../../assets/images/img/login-register.png" alt="">
       </div>
     </div>
   </div>

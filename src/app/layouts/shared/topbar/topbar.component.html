@@ -1,6 +1,7 @@
 <!-- start header -->
 <header>
-  <nav class="navbar navbar-expand-lg navbar-boxed navbar-light bg-white header-light fixed-top header-reverse-scroll ">
+  <nav
+    class="navbar navbar-expand-lg navbar-boxed navbar-light bg-transparent header-light fixed-top header-reverse-scroll">
     <div class="container-lg nav-header-container d-flex align-items-center">
       <div class="col-6 col-lg-2 me-auto ps-lg-0">
         <a class="navbar-brand" routerLink="/">
@@ -9,7 +10,7 @@
           <img src="../../../../assets/images/img/logo-black.png" class="mobile-logo" alt="">
         </a>
       </div>
-      <div *ngIf="isLogin" class="col-auto col-lg-12 menu-order px-lg-0">
+      <div class="col-auto col-lg-12 menu-order px-lg-0">
         <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-label="Toggle navigation">
           <span class="navbar-toggler-line"></span>
@@ -19,8 +20,8 @@
         </button>
         <div class=" collapse navbar-collapse align-items-center justify-content-center" id="navbarNav">
           <ul class="navbar-nav alt-font">
-            <li data-wow-duration=".2s" class=" mx-3 mt-3 animate__animated animate__fadeInDown" data-wow-offset="0"
-              data-wow-delay="0.2s">
+            <li *ngIf="isLogin" data-wow-duration=".2s" class=" mx-3 mt-3 animate__animated animate__fadeInDown"
+              data-wow-offset="0" data-wow-delay="0.2s">
               <a routerLink="/" routerLinkActive="activee" [routerLinkActiveOptions]="{exact: true}"
                 class="btn btn-extra-large btn-expand-ltr text-extra-dark-gray text-white-hover btn-rounded d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr"><i
                   class="solid-icon-Home dropdown-toggle me-0" style="opacity: 1 !important;"></i>
@@ -32,8 +33,9 @@
                 Home<span class="bg-gradient-light-purple-light-orange"></span></a> -->
             </li>
 
-            <li data-wow-duration=".2s" class=" mx-3 mt-3 animate__animated animate__delay-3s animate__fadeInDown"
-              data-wow-offset="0" data-wow-delay="0.4s">
+            <li *ngIf="isLogin" data-wow-duration=".2s"
+              class=" mx-3 mt-3 animate__animated animate__delay-3s animate__fadeInDown" data-wow-offset="0"
+              data-wow-delay="0.4s">
               <a routerLink="/about" routerLinkActive="activee"
                 class="btn btn-extra-large btn-expand-ltr text-extra-dark-gray text-white-hover btn-rounded d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr">About
                 us<span class="bg-gradient-light-purple-light-orange"></span></a>
@@ -43,8 +45,9 @@
                 us<span class="bg-gradient-light-purple-light-orange"></span></a> -->
             </li>
 
-            <li data-wow-duration=".2s" class=" mx-3 mt-3 animate__animated animate__delay-3s animate__fadeInDown"
-              data-wow-offset="0" data-wow-delay="0.6s">
+            <li *ngIf="isLogin" data-wow-duration=".2s"
+              class="mx-3 mt-3 animate__animated animate__delay-3s animate__fadeInDown" data-wow-offset="0"
+              data-wow-delay="0.6s">
               <a routerLink="/quizzes" routerLinkActive="activee"
                 class="btn btn-extra-large btn-expand-ltr text-extra-dark-gray text-white-hover btn-rounded d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr">
                 Our Exams Categories<span class="bg-gradient-light-purple-light-orange"></span></a>
@@ -54,7 +57,7 @@
                 Exams Categories<span class="bg-gradient-light-purple-light-orange"></span></a> -->
             </li>
 
-            <li data-wow-duration=".2s"
+            <li *ngIf="isLogin" data-wow-duration=".2s"
               class="ms-4 nav-item animate__animated animate__delay-4s animate__fadeInDown d-flex align-items-center"
               data-wow-offset="0" data-wow-delay="0.8s">
               <a (click)="logOut();"
@@ -66,28 +69,25 @@
             </li>
 
 
+            <!-- start menu item -->
+            <li *ngIf="!isLogin" data-wow-duration=".2s"
+              class="me-3 animate__animated animate__delay-3s animate__fadeInDown" data-wow-offset="0"
+              data-wow-delay="0.2s"><a routerLinkActive="active" routerLink="/sign-in" routerLinkActive="activee"
+                class="btn btn-extra-large btn-expand-ltr text-extra-dark-gray text-white-hover btn-rounded d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr">signIn
+                <span class="bg-gradient-light-purple-light-orange"></span></a>
+            </li>
+            <!-- end menu item -->
+            <!-- start menu item -->
+            <li *ngIf="!isLogin" data-wow-duration=".2s"
+              class="nav-item animate__animated animate__delay-3s animate__fadeInDown d-flex align-items-center"
+              data-wow-offset="0" data-wow-delay="0.4s"><a routerLink="/sign-up"
+                class="btn btn-extra-large btn-transparent-dark-gray btn-box-shadow-flat btn-expand-ltr d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr">Register</a>
+            </li>
+            <!-- end menu item -->
+
+
           </ul>
         </div>
-      </div>
-      <div *ngIf="!isLogin" class="col-auto col-lg-2 text-end pe-0 font-size-0">
-        <ul class="navbar-nav alt-font">
-
-          <!-- start menu item -->
-          <li data-wow-duration=".2s" class="nav-item animate__animated animate__delay-3s animate__fadeInDown"
-            data-wow-offset="0" data-wow-delay="0.2s"><a routerLinkActive="active" routerLink="/sign-in"
-              class="nav-link">signIn</a>
-          </li>
-          <!-- end menu item -->
-          <!-- start menu item -->
-          <li data-wow-duration=".2s"
-            class="nav-item animate__animated animate__delay-3s animate__fadeInDown d-flex align-items-center"
-            data-wow-offset="0" data-wow-delay="0.4s"><a routerLink="/sign-up"
-              class="btn btn.btn-extra-large rounded btn-gradient-purple-magenta py-2">Register</a></li>
-          <!-- end menu item -->
-
-
-        </ul>
-
       </div>
     </div>
   </nav>
