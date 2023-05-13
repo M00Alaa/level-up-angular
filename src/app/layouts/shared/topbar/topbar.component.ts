@@ -81,7 +81,7 @@ export class TopbarComponent implements OnInit {
     this.navbar.nativeElement?.classList?.remove('show');
   }
   removeClass() {
-    document.getElementById('classShow')?.classList?.remove('open');
+    document.getElementById('navbarNav')?.classList?.remove('show');
   }
 
 

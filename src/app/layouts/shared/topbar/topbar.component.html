@@ -22,13 +22,13 @@
           <ul class="navbar-nav alt-font">
             <li *ngIf="isLogin" data-wow-duration=".2s" class=" mx-3 mt-3 animate__animated animate__fadeInDown"
               data-wow-offset="0" data-wow-delay="0.2s">
-              <a routerLink="/" (click)="hideNavbar()" routerLinkActive="activee"
+              <a (click)="removeClass()" routerLink="/" routerLinkActive="activee"
                 [routerLinkActiveOptions]="{exact: true}"
                 class="btn btn-extra-large btn-expand-ltr text-extra-dark-gray text-white-hover btn-rounded d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr"><i
                   class="solid-icon-Home dropdown-toggle me-0" style="opacity: 1 !important;"></i>
                 Home<span class="bg-gradient-light-purple-light-orange"></span></a>
 
-              <!-- <a routerLink="/" routerLinkActive="activee" [routerLinkActiveOptions]="{exact: true}"
+              <!-- <a (click)="removeClass()" routerLink="/" routerLinkActive="activee" [routerLinkActiveOptions]="{exact: true}"
                 class="btn btn-extra-large btn-expand-ltr text-extra-dark-gray d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr"><i
                   class="solid-icon-Home dropdown-toggle me-0" style="opacity: 1 !important;"></i>
                 Home<span class="bg-gradient-light-purple-light-orange"></span></a> -->
@@ -37,11 +37,11 @@
             <li *ngIf="isLogin" data-wow-duration=".2s"
               class=" mx-3 mt-3 animate__animated animate__delay-3s animate__fadeInDown" data-wow-offset="0"
               data-wow-delay="0.4s">
-              <a routerLink="/about" (click)="hideNavbar()" routerLinkActive="activee"
+              <a (click)="removeClass()" routerLink="/about" routerLinkActive="activee"
                 class="btn btn-extra-large btn-expand-ltr text-extra-dark-gray text-white-hover btn-rounded d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr">About
                 us<span class="bg-gradient-light-purple-light-orange"></span></a>
 
-              <!-- <a routerLink="/about" routerLinkActive="activee"
+              <!-- <a (click)="removeClass()" routerLink="/about" routerLinkActive="activee"
                 class="btn btn-extra-large btn-expand-ltr text-extra-dark-gray d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr">About
                 us<span class="bg-gradient-light-purple-light-orange"></span></a> -->
             </li>
@@ -49,11 +49,11 @@
             <li *ngIf="isLogin" data-wow-duration=".2s"
               class="mx-3 mt-3 animate__animated animate__delay-3s animate__fadeInDown" data-wow-offset="0"
               data-wow-delay="0.6s">
-              <a routerLink="/quizzes" (click)="hideNavbar()" routerLinkActive="activee"
+              <a (click)="removeClass()" routerLink="/quizzes" routerLinkActive="activee"
                 class="btn btn-extra-large btn-expand-ltr text-extra-dark-gray text-white-hover btn-rounded d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr">
                 Our Exams Categories<span class="bg-gradient-light-purple-light-orange"></span></a>
 
-              <!-- <a routerLink="/quizzes" routerLinkActive="activee"
+              <!-- <a (click)="removeClass()" routerLink="/quizzes" routerLinkActive="activee"
                 class="btn btn-extra-large btn-expand-ltr text-extra-dark-gray d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr">Our
                 Exams Categories<span class="bg-gradient-light-purple-light-orange"></span></a> -->
             </li>
@@ -73,7 +73,8 @@
             <!-- start menu item -->
             <li *ngIf="!isLogin" data-wow-duration=".2s"
               class="me-3 animate__animated animate__delay-3s animate__fadeInDown" data-wow-offset="0"
-              data-wow-delay="0.2s"><a routerLinkActive="active" routerLink="/sign-in" routerLinkActive="activee"
+              data-wow-delay="0.2s"><a routerLinkActive="active" (click)="removeClass()" routerLink="/sign-in"
+                routerLinkActive="activee"
                 class="btn btn-extra-large btn-expand-ltr text-extra-dark-gray text-white-hover btn-rounded d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr">signIn
                 <span class="bg-gradient-light-purple-light-orange"></span></a>
             </li>
@@ -81,7 +82,7 @@
             <!-- start menu item -->
             <li *ngIf="!isLogin" data-wow-duration=".2s"
               class="nav-item animate__animated animate__delay-3s animate__fadeInDown d-flex align-items-center"
-              data-wow-offset="0" data-wow-delay="0.4s"><a routerLink="/sign-up"
+              data-wow-offset="0" data-wow-delay="0.4s"><a (click)="removeClass()" routerLink="/sign-up"
                 class="btn btn-extra-large btn-transparent-dark-gray btn-box-shadow-flat btn-expand-ltr d-table d-lg-inline-block lg-margin-15px-bottom md-margin-auto-lr">Register</a>
             </li>
             <!-- end menu item -->
