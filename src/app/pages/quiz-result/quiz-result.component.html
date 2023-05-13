@@ -32,8 +32,8 @@
             </div>
             <div class="col-12 col-lg-5 col-md-10 text-center text-md-start wow animate__fadeIn" data-wow-delay="0.4s">
 
-                <a *ngIf="isTest" routerLink="/quiz-levels/{{currentName}}"
-                    class="btn btn-link thin btn-extra-large text-extra-dark-gray">back to levels area
+                <a *ngIf="isTest" routerLink="/quiz-levels/{{currentName}}/quistions/{{resultMessage}}"
+                    class="btn btn-link thin btn-extra-large text-extra-dark-gray">go to {{resultMessage}}
                 </a>
                 <a *ngIf="resultMessage == 'success'" routerLink="/quiz-levels/{{currentName}}"
                     class="btn btn-link thin btn-extra-large text-extra-dark-gray">go to next

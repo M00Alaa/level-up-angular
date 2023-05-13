@@ -1,5 +1,5 @@
 <!-- start section -->
-<section class="half-section bg-light-gray wow animate__fadeIn" >
+<section class="half-section bg-light-gray wow animate__fadeIn">
     <div class="container">
         <div class="row justify-content-center margin-20px-bottom">
             <div class="col-12 col-xl-5 xol-lg-6 col-md-8">
@@ -7,7 +7,8 @@
                 <ul class="list-style-04">
                     <a [routerLink]="['quistions', 'test']">
                         <li class="bg-white border-radius-6px margin-20px-bottom">
-                            <i class="far fa-arrow-alt-circle-right text-fast-blue margin-15px-right" aria-hidden="true"></i>
+                            <i class="far fa-arrow-alt-circle-right text-fast-blue margin-15px-right"
+                                aria-hidden="true"></i>
                             <span class="text-extra-dark-gray">Test Level</span>
                         </li>
                     </a>
@@ -16,14 +17,15 @@
         </div>
         <div class="row justify-content-center margin-20px-top">
             <div class="col-12 col-xl-5 col-lg-6 col-md-8">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat minus, illum fugiat fugit placeat pariatur?</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat minus, illum fugiat fugit placeat
+                    pariatur?</p>
 
                 <ul class="list-style-04">
-                        <!-- list-style-04 li === padding : 15px 20px -->
-                        <li *ngFor="let level of levels" [routerLink]="['quistions', level.name]" class="bg-white border-radius-6px margin-20px-bottom pointer">
-                            <i class="far fa-dot-circle text-fast-blue margin-15px-right" aria-hidden="true"></i>
-                            <span class="text-extra-dark-gray">{{level.name}}</span>
-                        </li>
+                    <!-- list-style-04 li === padding : 15px 20px -->
+                    <li *ngFor="let level of levels" class=" bg-white border-radius-6px margin-20px-bottom pointer">
+                        <i class="far fa-dot-circle text-fast-blue margin-15px-right" aria-hidden="true"></i>
+                        <span class="text-extra-dark-gray">{{level.name}}</span>
+                    </li>
                 </ul>
             </div>
         </div>
