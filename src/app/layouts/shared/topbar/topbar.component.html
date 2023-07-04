@@ -93,9 +93,9 @@
 
 <header>
   <nav
-    class="navbar bg-very-light-pink navbar-expand-lg blur top-0 z-index-3 shadow position-fixed m-3 start-0 end-0 mx-auto w-75 py-2"
+    class="navbar bg-very-light-pink navbar-expand-lg blur top-0 z-index-3 shadow position-fixed my-4 start-0 end-0 mx-auto w-75 py-2"
     style="border-radius: 0.75rem;">
-    <div class="container">
+    <div class="container px-3">
       <a href="#" class="navbar-brand ms-3">
         <img src="../../../../assets/images/img/logo-black.png" alt="logo" style="width: 75px;">
       </a>
@@ -154,8 +154,10 @@
 
         </ul>
 
-        <ul class="navbar-nav d-lg-flex d-none">
-          <li *ngIf="isLogin" class="nav-item">
+        <ul class="navbar-nav">
+          <li *ngIf="isLogin" data-wow-duration=".2s"
+            class="nav-item animate__animated animate__delay-5s animate__fadeInDown" data-wow-offset="0"
+            data-wow-delay="0.8s">
             <a (click)="logOut();" class="nav-link p-0 me-2 pointer">
               <i class="fas fa-key opacity-6 text-dark me-1" aria-hidden="true"></i> Log Out
             </a>
