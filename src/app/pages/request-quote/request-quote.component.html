@@ -3,10 +3,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <!-- start services item -->
-            <div class="col-12 col-lg-4 col-md-9 md-margin-30px-bottom xs-margin-15px-bottom wow animate__fadeIn"
+            <div class="col-12 col-lg-4 col-md-9 g-5 wow animate__fadeIn"
                 *ngFor="let category of Categories; index as index">
-                <div
-                    class="feature-box text-start box-shadow-large box-shadow-double-large-hover bg-white padding-4-rem-all lg-padding-3-rem-all md-padding-4-half-rem-all">
+                <div class="feature-box text-start box-shadow-large box-shadow-double-large-hover bg-white padding-4-rem-all lg-padding-3-rem-all md-padding-4-half-rem-all"
+                    style="border-radius: 8px;">
                     <div class="feature-box-content w-100">
                         <span class="margin-15px-bottom d-block text-extra-medium">0{{index + 1}}</span>
                         <h6 class="alt-font font-weight-600 d-block text-extra-dark-gray">{{category.Name}}</h6>
